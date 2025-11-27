@@ -24,12 +24,8 @@
         <activity android:name=".CountdownTimerInitialActivity" />
         <activity android:name=".CountdownTimerActivity" />
         <activity android:name=".TimerSessionSummaryActivity" />
-        <activity android:name=".TutorDiscoveryFragment" />
-        <activity android:name=".Session" />
-        <activity android:name=".QuizSelectionActivity" />
-        <activity android:name=".UpcomingSessionsFragment" />
-        <activity android:name=".ProfileActivity" />
 
     </application>
+
 
 </manifest>
