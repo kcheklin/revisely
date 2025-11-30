@@ -126,7 +126,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/home_icon"
+                android:drawableStart="@drawable/home_icon_white"
                 android:text=""
                 android:textSize="24sp"/>
 
@@ -151,7 +151,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/search_icon"
+                android:drawableStart="@drawable/search_icon_gray"
                 android:text=""
                 android:textSize="24sp"/>
 
@@ -177,7 +177,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/calendar_icon"
+                android:drawableStart="@drawable/calendar_icon_gray"
                 android:text=""
                 android:textSize="24sp"/>
 
@@ -203,7 +203,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/user_icon"
+                android:drawableStart="@drawable/user_icon_gray"
                 android:text=""
                 android:textSize="24sp"/>
 
