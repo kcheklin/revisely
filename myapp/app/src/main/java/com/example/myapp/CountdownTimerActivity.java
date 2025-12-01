@@ -81,7 +81,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
                 if (countDownTimer != null) {
                     countDownTimer.cancel();
                 }
-                Intent intent = new Intent(CountdownTimerActivity.this, TutorDiscoveryFragment.class);
+                Intent intent = new Intent(CountdownTimerActivity.this, TutorDiscoveryContainerActivity.class);
                 startActivity(intent);
             }
         });

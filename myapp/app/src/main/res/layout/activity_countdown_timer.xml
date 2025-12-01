@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EEECE1">
 
     <TextView
@@ -90,7 +91,8 @@
             android:text="⬛"
             android:textSize="30sp"
             android:textColor="#FFFFFF"
-            android:background="@drawable/stop_button_background"/>
+            android:background="@drawable/stop_button_background"
+            app:backgroundTint="@null"/>
 
     </LinearLayout>
 

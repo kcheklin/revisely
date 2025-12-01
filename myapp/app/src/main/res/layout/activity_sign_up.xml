@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#EEECE1"
     android:fillViewport="true">
 
@@ -140,6 +141,7 @@
                     android:text="Primary\nStudent"
                     android:textColor="#3D2B1F"
                     android:background="@drawable/btn_unselected"
+                    app:backgroundTint="@null"
                     android:layout_marginRight="10dp"/>
 
                 <Button
@@ -150,6 +152,7 @@
                     android:text="Secondary\nStudent"
                     android:textColor="#3D2B1F"
                     android:background="@drawable/btn_unselected"
+                    app:backgroundTint="@null"
                     android:layout_marginLeft="10dp"/>
 
             </LinearLayout>
@@ -161,6 +164,7 @@
                 android:text="Sign Up"
                 android:textColor="#FFFFFF"
                 android:background="@drawable/button_background"
+                app:backgroundTint="@null"
                 android:layout_gravity="center"
                 android:textSize="18sp"/>
 

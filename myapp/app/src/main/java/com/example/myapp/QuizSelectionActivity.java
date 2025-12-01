@@ -78,7 +78,7 @@ public class QuizSelectionActivity extends AppCompatActivity {
         btnNavSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuizSelectionActivity.this,  TutorDiscoveryFragment.class);
+                Intent intent = new Intent(QuizSelectionActivity.this,  TutorDiscoveryContainerActivity.class);
                 startActivity(intent);
             }
         });

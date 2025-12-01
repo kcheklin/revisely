@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="14dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardElevation="4dp"
+    android:id="@+id/CVTutor">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="15dp">
+
+        <ImageView
+            android:id="@+id/IVAvatar2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_avatar"
+            android:outlineProvider="background"
+            android:clipToOutline="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/TVTutorName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="Tutor Name"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/IVAvatar2"
+            app:layout_constraintTop_toTopOf="@+id/IVAvatar2" />
+
+        <ImageView
+            android:id="@+id/IVStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@+id/TVTutorName"
+            app:layout_constraintTop_toBottomOf="@+id/TVTutorName"
+            app:srcCompat="@drawable/ic_star" />
+
+        <TextView
+            android:id="@+id/TVTutorRating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:text="Tutor Rating"
+            app:layout_constraintStart_toEndOf="@+id/IVStar"
+            app:layout_constraintTop_toBottomOf="@+id/TVTutorName" />
+
+        <TextView
+            android:id="@+id/TVTotalRatings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="Tutor Total Ratings"
+            android:textColor="#99A1AF"
+            app:layout_constraintStart_toEndOf="@+id/TVTutorRating"
+            app:layout_constraintTop_toBottomOf="@+id/TVTutorName" />
+
+        <ImageView
+            android:id="@+id/IVFaculty"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/IVAvatar2"
+            app:srcCompat="@drawable/ic_location" />
+
+        <TextView
+            android:id="@+id/TVTutorFaculty"
+            android:layout_width="355dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:text="Tutor Faculty"
+            android:textColor="#6A7282"
+            app:layout_constraintStart_toEndOf="@+id/IVFaculty"
+            app:layout_constraintTop_toTopOf="@+id/IVFaculty" />
+
+        <Button
+            android:id="@+id/BtnViewProfile"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="#4DB8B0"
+            android:text="@string/title_view_profile"
+            android:textColor="#FFFFFF"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TVTutorFaculty" />
+
+        <HorizontalScrollView
+            android:layout_width="286dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintStart_toStartOf="@+id/IVStar"
+            app:layout_constraintTop_toBottomOf="@+id/TVTotalRatings">
+
+            <LinearLayout
+                android:id="@+id/LLSubjects"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" />
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,3 +1,55 @@
 <resources>
     <string name="app_name">myapp</string>
+    <string name="discovery_find_tutor">Find a tutor</string>
+    <string name="discovery_search_hint">Search by name or subject…</string>
+    <string name="discovery_subject">Subject</string>
+    <string name="discovery_rating">Rating</string>
+    <string name="title_view_profile">View Profile</string>
+    <string name="text_about">About</string>
+    <string name="text_students">Students</string>
+    <string name="text_sessions">Sessions</string>
+    <string name="text_experience">Experience</string>
+    <string name="text_rating_reviews">Ratings and Reviews</string>
+    <string name="text_subjects_taught">Subjects Taught</string>
+    <string name="text_education">Education</string>
+    <string name="text_time_slots">Available Time Slots</string>
+    <string name="text_select_date">Select Date</string>
+    <string name="text_select_time">Select Time</string>
+    <string name="text_book_session">Book Session</string>
+    <string name="text_filter_rating">Filter by rating</string>
+    <string name="text_student_review">Student Reviews</string>
+    <string name="text_selected_date">Selected Date and Time</string>
+    <string name="text_notes">Additional Notes</string>
+    <string name="text_select_subject">Select a subject</string>
+    <string name="text_cover">Any specific topics or questions you\'d like to cover</string>
+    <string name="text_summary">Summary</string>
+    <string name="text_confirm_booking">Confirm Booking</string>
+    <string name="text_duration">Duration (hours)</string>
+    <string name="text_booking_confirm">Booking Confirmed!</string>
+    <string name="text_confirm">You\'ll be notified once your tutor responds.</string>
+    <string name="text_back_home">Back to Home</string>
+    <string name="chip_all">All</string>
+    <string name="chip_math">Mathematics</string>
+    <string name="chip_phy">Physics</string>
+    <string name="chip_chem">Chemistry</string>
+    <string name="chip_bio">Biology</string>
+    <string name="chip_add_math">Additional Mathematics</string>
+    <string name="chip_eco">Economy</string>
+    <string name="chip_acc">Accounting</string>
+    <string name="chip_hist">History</string>
+    <string name="chip_mly">Malay</string>
+    <string name="chip_eng">English</string>
+    <string name="chip_cn">Chinese</string>
+    <string name="chip_rate">All Ratings</string>
+    <string name="chip_4.5">4.5+</string>
+    <string name="chip_4.0">4.0+</string>
+    <string name="chip_3.5">3.5+</string>
+    <string name="chip_3.0">3.0+</string>
+    <string name="chip_below_3.0">Below 3.0</string>
+    <string-array name="sort_options">
+        <item>Highest Rating</item>
+        <item>Lowest Rating</item>
+    </string-array>
+    <string name="tutor_count">48 tutors available</string>
+    <string name="tutor_status">Available</string>
 </resources>

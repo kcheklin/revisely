@@ -38,7 +38,7 @@ public class StudentHomepageActivity extends AppCompatActivity {
         btnTutorDiscovery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StudentHomepageActivity.this, TutorDiscoveryFragment.class);
+                Intent intent = new Intent(StudentHomepageActivity.this, TutorDiscoveryContainerActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +69,7 @@ public class StudentHomepageActivity extends AppCompatActivity {
         navSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StudentHomepageActivity.this, TutorDiscoveryFragment.class);
+                Intent intent = new Intent(StudentHomepageActivity.this, TutorDiscoveryContainerActivity.class);
                 startActivity(intent);
             }
         });

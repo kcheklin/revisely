@@ -73,7 +73,7 @@ public class CountdownTimerInitialActivity extends AppCompatActivity {
         navSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CountdownTimerInitialActivity.this, TutorDiscoveryFragment.class);
+                Intent intent = new Intent(CountdownTimerInitialActivity.this, TutorDiscoveryContainerActivity.class);
                 startActivity(intent);
             }
         });

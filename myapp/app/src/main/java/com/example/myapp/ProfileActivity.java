@@ -143,7 +143,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (btnNavSearch != null) {
             btnNavSearch.setOnClickListener(v -> {
                 selectNavItem(btnNavSearch);
-                Intent intent = new Intent(ProfileActivity.this, TutorDiscoveryFragment.class);
+                Intent intent = new Intent(ProfileActivity.this, TutorDiscoveryContainerActivity.class);
                 startActivity(intent);
             });
         }
