@@ -151,7 +151,7 @@ public class ProfileActivity extends AppCompatActivity {
         if (btnNavUpcoming != null) {
             btnNavUpcoming.setOnClickListener(v -> {
                 selectNavItem(btnNavUpcoming);
-                Intent intent = new Intent(ProfileActivity.this, UpcomingSessionsFragment.class);
+                Intent intent = new Intent(ProfileActivity.this, UpcomingSessionsActivity.class);
                 startActivity(intent);
             });
         }

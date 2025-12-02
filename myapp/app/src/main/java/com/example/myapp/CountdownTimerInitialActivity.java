@@ -81,7 +81,7 @@ public class CountdownTimerInitialActivity extends AppCompatActivity {
         navUpcoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CountdownTimerInitialActivity.this, UpcomingSessionsFragment.class);
+                Intent intent = new Intent(CountdownTimerInitialActivity.this, UpcomingSessionsActivity.class);
                 startActivity(intent);
             }
         });

@@ -78,7 +78,7 @@ public class TimerSessionSummaryActivity extends AppCompatActivity {
         navUpcoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TimerSessionSummaryActivity.this, UpcomingSessionsFragment.class);
+                Intent intent = new Intent(TimerSessionSummaryActivity.this, UpcomingSessionsActivity.class);
                 startActivity(intent);
             }
         });

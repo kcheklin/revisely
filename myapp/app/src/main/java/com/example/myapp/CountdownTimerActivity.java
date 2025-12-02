@@ -92,7 +92,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
                 if (countDownTimer != null) {
                     countDownTimer.cancel();
                 }
-                Intent intent = new Intent(CountdownTimerActivity.this, UpcomingSessionsFragment.class);
+                Intent intent = new Intent(CountdownTimerActivity.this, UpcomingSessionsActivity.class);
                 startActivity(intent);
             }
         });

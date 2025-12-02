@@ -102,7 +102,7 @@ public class TutorDiscoveryFragment extends Fragment {
         });
 
         navUpcoming.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), UpcomingSessionsFragment.class);
+            Intent intent = new Intent(getActivity(), UpcomingSessionsActivity.class);
             startActivity(intent);
             getActivity().finish();
         });

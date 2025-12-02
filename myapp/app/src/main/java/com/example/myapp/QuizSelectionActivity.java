@@ -87,7 +87,7 @@ public class QuizSelectionActivity extends AppCompatActivity {
         btnNavUpcoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(QuizSelectionActivity.this, UpcomingSessionsFragment.class);
+                Intent intent = new Intent(QuizSelectionActivity.this, UpcomingSessionsActivity.class);
                 startActivity(intent);
             }
         });

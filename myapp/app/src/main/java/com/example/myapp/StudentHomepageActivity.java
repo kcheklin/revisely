@@ -46,7 +46,7 @@ public class StudentHomepageActivity extends AppCompatActivity {
         btnMySessions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StudentHomepageActivity.this, Session.class);
+                Intent intent = new Intent(StudentHomepageActivity.this, UpcomingSessionsActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +77,7 @@ public class StudentHomepageActivity extends AppCompatActivity {
         navUpcoming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StudentHomepageActivity.this, UpcomingSessionsFragment.class);
+                Intent intent = new Intent(StudentHomepageActivity.this, UpcomingSessionsActivity.class);
                 startActivity(intent);
             }
         });

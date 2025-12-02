@@ -25,9 +25,11 @@
         <activity android:name=".CountdownTimerActivity" />
         <activity android:name=".TimerSessionSummaryActivity" />
         <activity android:name=".TutorDiscoveryContainerActivity" />
-        <activity android:name=".Session" />
         <activity android:name=".QuizSelectionActivity" />
-        <activity android:name=".UpcomingSessionsFragment" />
+        <activity android:name=".UpcomingSessionsActivity" />
+        <activity android:name=".PastSessionsActivity" />
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".RateSessionActivity" />
         <activity android:name=".ProfileActivity" />
         <activity
             android:name=".EditProfileActivity"
