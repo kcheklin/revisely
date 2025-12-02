@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F3EE"
+    android:orientation="vertical">
+
+    <!-- Main Card -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        android:backgroundTint="#F5F3EE">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Back Button and Progress -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentStart="true">
+
+                        <ImageView
+                            android:id="@+id/backButton"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/qz_ic_arrow_back"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Previous"
+                            android:textColor="@color/text_dark"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
+
+                    <!-- Timer Circle -->
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true">
+
+                        <ProgressBar
+                            android:id="@+id/timerProgress"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:progressDrawable="@drawable/qz_circle_progress"
+                            android:background="@drawable/qz_circle_progress_background"
+                            android:max="100"
+                            android:progress="100"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_centerInParent="true">
+
+                            <TextView
+                                android:id="@+id/questionNumber"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1 /10"
+                                android:textColor="@color/text_dark"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/timerText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30"
+                                android:textColor="@color/text_dark"
+                                android:textSize="24sp"
+                                android:textStyle="bold"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <!-- Question Card -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="0dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginBottom="24dp">
+
+                    <TextView
+                        android:id="@+id/questionText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="What is the second derivative of f(x) = x²?"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:padding="20dp"/>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Options -->
+                <LinearLayout
+                    android:id="@+id/optionsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/option1"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="3x²"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:background="@drawable/qz_option_unselected"
+                        android:layout_marginBottom="12dp"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <TextView
+                        android:id="@+id/option2"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="6x"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:background="@drawable/qz_option_unselected"
+                        android:layout_marginBottom="12dp"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <TextView
+                        android:id="@+id/option3"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="3x"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:background="@drawable/qz_option_unselected"
+                        android:layout_marginBottom="12dp"
+                        android:clickable="true"
+                        android:focusable="true"/>
+
+                    <TextView
+                        android:id="@+id/option4"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="x²"
+                        android:textColor="@color/text_dark"
+                        android:textSize="16sp"
+                        android:gravity="center_vertical"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:background="@drawable/qz_option_unselected"
+                        android:clickable="true"
+                        android:focusable="true"/>
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="24dp"/>
+
+                <!-- Next Button -->
+                <Button
+                    android:id="@+id/nextButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Next"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:background="@drawable/qz_button_background_dark"/>
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
