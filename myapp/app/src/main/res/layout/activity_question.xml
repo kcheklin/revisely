@@ -197,6 +197,7 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    app:backgroundTint="@null"
                     android:background="@drawable/qz_button_background_dark"/>
             </LinearLayout>
         </ScrollView>
