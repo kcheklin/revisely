@@ -8,6 +8,173 @@
 
 ## API Routes
 
+### Study Session Routes
+
+#### POST /sessions
+Create new study session (requires authentication)
+
+**Headers:**
+```
+Authorization: Bearer <access-token>
+```
+
+**Request Body:**
+```json
+{
+  "subject": "Mathematics",
+  "durationInMinutes": 25,
+  "startTime": "2024-12-06T10:00:00Z"
+}
+```
+
+**Response:**
+```json
+{
+  "session": {
+    "id": 1,
+    "user_id": 1,
+    "subject": "Mathematics",
+    "duration_in_minutes": 25,
+    "start_time": "2024-12-06T10:00:00Z",
+    "end_time": null,
+    "created_at": "2024-12-06T10:00:00Z"
+  }
+}
+```
+
+---
+
+#### GET /sessions
+Get all study sessions for authenticated user
+
+**Headers:**
+```
+Authorization: Bearer <access-token>
+```
+
+**Response:**
+```json
+{
+  "sessions": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "subject": "Mathematics",
+      "duration_in_minutes": 25,
+      "start_time": "2024-12-06T10:00:00Z",
+      "end_time": "2024-12-06T10:25:00Z",
+      "created_at": "2024-12-06T10:00:00Z"
+    }
+  ]
+}
+```
+
+---
+
+#### GET /sessions/summary
+Get study session summary grouped by subject
+
+**Headers:**
+```
+Authorization: Bearer <access-token>
+```
+
+**Response:**
+```json
+{
+  "summary": [
+    {
+      "subject": "Mathematics",
+      "total_minutes": 150,
+      "session_count": 6
+    },
+    {
+      "subject": "Physics",
+      "total_minutes": 75,
+      "session_count": 3
+    }
+  ]
+}
+```
+
+---
+
+#### GET /sessions/:id
+Get specific study session by ID
+
+**Headers:**
+```
+Authorization: Bearer <access-token>
+```
+
+**Response:**
+```json
+{
+  "session": {
+    "id": 1,
+    "user_id": 1,
+    "subject": "Mathematics",
+    "duration_in_minutes": 25,
+    "start_time": "2024-12-06T10:00:00Z",
+    "end_time": "2024-12-06T10:25:00Z",
+    "created_at": "2024-12-06T10:00:00Z"
+  }
+}
+```
+
+---
+
+#### PUT /sessions/:id
+Update study session
+
+**Headers:**
+```
+Authorization: Bearer <access-token>
+```
+
+**Request Body:**
+```json
+{
+  "subject": "Advanced Mathematics",
+  "durationInMinutes": 30,
+  "endTime": "2024-12-06T10:30:00Z"
+}
+```
+
+**Response:**
+```json
+{
+  "session": {
+    "id": 1,
+    "user_id": 1,
+    "subject": "Advanced Mathematics",
+    "duration_in_minutes": 30,
+    "start_time": "2024-12-06T10:00:00Z",
+    "end_time": "2024-12-06T10:30:00Z",
+    "created_at": "2024-12-06T10:00:00Z"
+  }
+}
+```
+
+---
+
+#### DELETE /sessions/:id
+Delete study session
+
+**Headers:**
+```
+Authorization: Bearer <access-token>
+```
+
+**Response:**
+```json
+{
+  "message": "Session deleted"
+}
+```
+
+---
+
 ### Authentication Routes
 
 #### POST /auth/signup
@@ -172,6 +339,8 @@ Authorization: Bearer <access-token>
 ---
 
 ## Features
+
+### Module 1: Authentication & Authorization
 - ✅ User registration with email validation
 - ✅ JWT-based authentication (access + refresh tokens)
 - ✅ Secure password hashing with bcrypt
@@ -179,7 +348,17 @@ Authorization: Bearer <access-token>
 - ✅ Role-based authorization (student/admin)
 - ✅ Token refresh mechanism
 - ✅ Authentication middleware
+
+### Module 2: Countdown Focus Timer
+- ✅ CRUD operations for study sessions
+- ✅ Session summary endpoint (grouped by subject)
+- ✅ Timer logs with timestamps
+- ✅ Rate limiting (100 requests per 15 min)
+- ✅ Auth rate limiting (5 login attempts per 15 min)
+
+### Shared
 - ✅ PostgreSQL database integration
+- ✅ API security with rate limiting
 
 ## Tech Stack
 - Node.js + Express
