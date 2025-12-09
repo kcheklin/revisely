@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F3EE">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomNavigation">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- Top Bar -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="My Profile"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+
+                <ImageView
+                    android:id="@+id/ivEdit"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/pf_ic_edit"
+                    android:contentDescription="Edit Profile"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"/>
+            </RelativeLayout>
+
+            <!-- Profile Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:backgroundTint="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Profile Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:id="@+id/ivProfile"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/pf_profile_placeholder"
+                            android:scaleType="centerCrop"
+                            android:contentDescription="Profile Picture" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="12dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Jaelyn"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:id="@+id/tvField"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Computer Science (AI)"
+                                android:textSize="12sp"
+                                android:textColor="#666666"
+                                android:layout_marginTop="2dp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="STUDENT"
+                            android:textSize="10sp"
+                            android:textColor="#FFFFFF"
+                            android:background="@drawable/pf_badge_background"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp"
+                            android:elevation="4dp"
+                            android:shadowColor="#80000000"
+                            android:shadowDx="0"
+                            android:shadowDy="2"
+                            android:shadowRadius="4"/>
+                    </LinearLayout>
+
+                    <!-- Bio -->
+                    <TextView
+                        android:id="@+id/tvBio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Coffee☕ and a good study playlist 🎵keep me going."
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="12dp" />
+
+                    <!-- Divider Line -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="#E0E0E0" />
+
+                    <!-- Stats -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tvTotalHabits"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Hours"
+                                android:textSize="10sp"
+                                android:textColor="#666666" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tvStreak"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="50+"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sessions"
+                                android:textSize="10sp"
+                                android:textColor="#666666" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tvStudyDays"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="30 days"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="#000000" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Streak"
+                                android:textSize="10sp"
+                                android:textColor="#666666" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Subject Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvSubjects"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:backgroundTint="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Subject"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🧬 Biology"
+                            android:background="@drawable/pf_subject_chip"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="📚 English"
+                            android:background="@drawable/pf_subject_chip"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:textSize="12sp"
+                            android:layout_marginEnd="8dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🧪 Math"
+                            android:background="@drawable/pf_subject_chip"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="6dp"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🧪 Chemistry"
+                        android:background="@drawable/pf_subject_chip"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="6dp"
+                        android:textSize="12sp"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Study Goals Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:backgroundTint="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Study Goals"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/tvGoals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• Study 8 hours daily.\n• Score GPA 4.0.\n• Complete all assignments on time."
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="4dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Daily Motivation Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvMotivation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:backgroundTint="#E3F2FD">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="⭐ Daily Motivation"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#1976D2" />
+
+                        <ImageView
+                            android:id="@+id/ivRefresh"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/pf_ic_refresh"
+                            android:contentDescription="Refresh"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="4dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvMotivation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="&quot;The only way to do great work is to love what you do.&quot; - Steve Jobs"
+                        android:textSize="13sp"
+                        android:textColor="#424242"
+                        android:textStyle="italic"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Study Analytics Card -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvAnalytics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:backgroundTint="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📊 Study Analytics"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="12dp" />
+
+                    <!-- Period Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="16dp">
+
+                        <Button
+                            android:id="@+id/btnDaily"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="38dp"
+                            android:text="Daily"
+                            android:textStyle="bold"
+                            android:textColor="#1447e6"
+                            android:textSize="14sp"
+                            android:textAllCaps="false"
+                            android:background="@drawable/pf_btn_active"
+                            app:backgroundTint="@null"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnWeekly"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="38dp"
+                            android:text="Weekly"
+                            android:textStyle="bold"
+                            android:textColor="#1447e6"
+                            android:textSize="14sp"
+                            android:textAllCaps="false"
+                            android:background="@drawable/pf_btn_inactive"
+                            app:backgroundTint="@null"
+                            android:layout_marginEnd="8dp" />
+
+                        <Button
+                            android:id="@+id/btnMonthly"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="38dp"
+                            android:text="Monthly"
+                            android:textStyle="bold"
+                            android:textColor="#1447e6"
+                            android:textSize="14sp"
+                            android:textAllCaps="false"
+                            android:background="@drawable/pf_btn_inactive"
+                            app:backgroundTint="@null" />
+                    </LinearLayout>
+
+                    <!-- Total Hours -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Study Hours"
+                        android:textSize="12sp"
+                        android:textColor="#666666"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvTotalHours"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8.0 h"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Pie Chart -->
+                    <com.github.mikephil.charting.charts.PieChart
+                        android:id="@+id/pieChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Legend -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="4dp">
+
+                            <View
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:background="@drawable/pf_legend_biology" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Biology"
+                                android:textSize="12sp"
+                                android:textColor="#666666"
+                                android:layout_marginStart="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.5h"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="4dp">
+
+                            <View
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:background="@drawable/pf_legend_chemistry" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Chemistry"
+                                android:textSize="12sp"
+                                android:textColor="#666666"
+                                android:layout_marginStart="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.8h"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="4dp">
+
+                            <View
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:background="@drawable/pf_legend_mathematics" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="Mathematics"
+                                android:textSize="12sp"
+                                android:textColor="#666666"
+                                android:layout_marginStart="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.2h"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:background="@drawable/pf_legend_english" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"
+                                android:text="English"
+                                android:textSize="12sp"
+                                android:textColor="#666666"
+                                android:layout_marginStart="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3.5h"
+                                android:textSize="12sp"
+                                android:textColor="#000000" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Logout Button -->
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Log Out"
+                android:textSize="14sp"
+                android:textColor="#FF6B6B"
+                android:textAllCaps="false"
+                android:background="@drawable/pf_btn_logout"
+                app:backgroundTint="@null"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#533B3B"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/home_icon_selector"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/search_icon_selector"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search &amp;\nBook"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navUpcoming"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/calendar_icon_selector"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upcoming\nSession"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/user_icon_selector"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

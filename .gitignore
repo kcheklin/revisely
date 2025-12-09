@@ -1,0 +1,34 @@
+# Node.js
+node_modules/
+npm-debug.log
+*.log
+.env
+
+# Database
+*.sqlite
+*.sqlite-journal
+
+# Android (myapp)
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build/
+/captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.dex
+*.class
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.iml
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store

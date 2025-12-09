@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ChipSubject" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_subject_background</item>
+        <item name="android:textColor">@color/chip_subject_text</item>
+        <item name="chipStartPadding">12dp</item>
+        <item name="chipEndPadding">12dp</item>
+    </style>
+
+    <style name="ChipRating" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_rating_background</item>
+        <item name="android:textColor">@color/chip_rating_text</item>
+        <item name="chipStartPadding">12dp</item>
+        <item name="chipEndPadding">12dp</item>
+    </style>
+</resources>

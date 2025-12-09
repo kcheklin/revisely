@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F0">
+
+    <ScrollView
+        android:id="@+id/scrollArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header with Back Button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="#FFFFFF"
+                android:elevation="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:paddingTop="25dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_back" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvHeaderTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="25dp"
+                        android:text="Rate Your Session"
+                        android:textColor="#333333"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Content Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp"
+                android:backgroundTint="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:id="@+id/tvSubject"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mathematics Session"
+                        android:textSize="16sp"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/tvTutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Lyn"
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="4dp" />
+
+                    <TextView
+                        android:id="@+id/tvDateTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nov 18, 2025 • 9:00 AM"
+                        android:textSize="12sp"
+                        android:textColor="#999999"
+                        android:layout_marginTop="4dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E0E0E0"
+                        android:layout_marginVertical="16dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="How was your session?"
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="12dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to rate your experience"
+                        android:textSize="12sp"
+                        android:textColor="#999999"
+                        android:layout_marginBottom="8dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_marginVertical="12dp">
+
+                        <ImageView
+                            android:id="@+id/star1"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_star_empty"
+                            android:contentDescription="star1"
+                            android:layout_margin="4dp" />
+
+                        <ImageView
+                            android:id="@+id/star2"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_star_empty"
+                            android:contentDescription="star2"
+                            android:layout_margin="4dp" />
+
+                        <ImageView
+                            android:id="@+id/star3"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_star_empty"
+                            android:contentDescription="star3"
+                            android:layout_margin="4dp" />
+
+                        <ImageView
+                            android:id="@+id/star4"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_star_empty"
+                            android:contentDescription="star4"
+                            android:layout_margin="4dp" />
+
+                        <ImageView
+                            android:id="@+id/star5"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_star_empty"
+                            android:contentDescription="star5"
+                            android:layout_margin="4dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Share Your Feedback"
+                        android:textSize="14sp"
+                        android:textColor="#666666"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quick feedback (optional)"
+                        android:textSize="12sp"
+                        android:textColor="#999999"
+                        android:layout_marginBottom="12dp" />
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/chipGroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:singleSelection="false">
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Great explanation!"
+                            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Very patient"
+                            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Well prepared"
+                            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Excellent teaching"
+                            style="@style/Widget.MaterialComponents.Chip.Choice" />
+
+                        <com.google.android.material.chip.Chip
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Highly recommend"
+                            style="@style/Widget.MaterialComponents.Chip.Choice" />
+                    </com.google.android.material.chip.ChipGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Write a more detailed review"
+                        android:textSize="12sp"
+                        android:textColor="#999999"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <EditText
+                        android:id="@+id/etReview"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:gravity="top"
+                        android:padding="12dp"
+                        android:background="@drawable/bg_text_area"
+                        android:hint="Share your experience with this tutor. What did you learn? What could be improved?"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Help other students make informed decisions"
+                        android:textSize="10sp"
+                        android:textColor="#999999"
+                        android:layout_marginTop="8dp" />
+
+                    <android.widget.Button
+                        android:id="@+id/btnSubmit"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Submit Review"
+                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_button_submit"
+                        android:backgroundTint="@null"
+                        android:layout_marginTop="24dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You can always edit or delete your review later"
+                        android:textSize="10sp"
+                        android:textColor="#999999"
+                        android:layout_marginTop="8dp"
+                        android:layout_gravity="center" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============================
+         YOUR CUSTOM BOTTOM NAVIGATION (UNCHANGED)
+         ============================ -->
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#533B3B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Home -->
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_home"
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#99A1AF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Search & Book -->
+        <LinearLayout
+            android:id="@+id/navSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_search"
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search &amp;\nBook"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Upcoming Session -->
+        <LinearLayout
+            android:id="@+id/navUpcoming"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_upcoming"
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upcoming\nSession"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <!-- Profile -->
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_user"
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="#99A1AF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

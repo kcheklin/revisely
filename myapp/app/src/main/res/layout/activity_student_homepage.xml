@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EEECE1">
+
+    <LinearLayout
+        android:id="@+id/topSection"
+        android:layout_width="match_parent"
+        android:layout_height="162dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:padding="25dp">
+
+        <TextView
+            android:layout_width="166dp"
+            android:layout_height="121dp"
+            android:gravity="center"
+            android:text="📖"
+            android:textSize="90sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hi There"
+                android:textColor="#7C6B5C"
+                android:textSize="34sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#2D1E14"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="2"
+                android:text="Jaelyn"
+                android:textColor="#3D2B1F"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_above="@id/bottomNavigation"
+        android:layout_below="@id/topSection"
+        android:layout_marginTop="-68dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="25dp">
+
+        <Button
+            android:id="@+id/btnCountdownTimer"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/pink_button_background"
+            app:backgroundTint="@null"
+            android:text="Countdown Focus Timer"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnTutorDiscovery"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/pink_button_background"
+            app:backgroundTint="@null"
+            android:text="Tutor Discovery &amp;\nBooking"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnMySessions"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/pink_button_background"
+            app:backgroundTint="@null"
+            android:text="My Sessions"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btnQuizzes"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/pink_button_background"
+            app:backgroundTint="@null"
+            android:text="Textbook-Based Quizzes"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#533B3B"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/home_icon_white"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/search_icon_gray"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search &amp;\nBook"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navUpcoming"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/calendar_icon_gray"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upcoming\nSession"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/user_icon_gray"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F3EE">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top Bar -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/pf_ic_back"
+                android:contentDescription="Back"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Edit Profile"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+        </RelativeLayout>
+
+        <!-- Profile Photo -->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/pf_profile_placeholder"
+                android:scaleType="centerCrop"
+                android:contentDescription="Profile Picture" />
+
+            <ImageView
+                android:id="@+id/ivEditPhoto"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignEnd="@id/ivProfile"
+                android:layout_alignBottom="@id/ivProfile"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/pf_ic_camera"
+                android:background="@drawable/pf_edit_photo_bg"
+                android:padding="8dp"
+                android:elevation="4dp"
+                android:contentDescription="Edit Photo" />
+        </RelativeLayout>
+
+        <!-- Name Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Jaelyn"
+            android:paddingHorizontal="16dp"
+            android:background="@drawable/pf_edit_text_bg"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Educational Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Educational Field"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etField"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="Computer Science (AI)"
+            android:paddingHorizontal="16dp"
+            android:background="@drawable/pf_edit_text_bg"
+            android:textSize="14sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Bio Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bio"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etBio"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="Coffee☕ and a good study playlist 🎵keep me going."
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@drawable/pf_edit_text_bg"
+            android:textSize="14sp"
+            android:gravity="top|start"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Subject Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Subject"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Changed from ChipGroup to LinearLayout -->
+        <LinearLayout
+            android:id="@+id/chipGroupSubjects"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+            <!-- Subjects will be added dynamically -->
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvAddSubject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ Add Subject"
+            android:textSize="14sp"
+            android:textColor="#4A90E2"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Study Goals Field -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Study Goals"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/etGoals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minLines="4"
+            android:maxLines="8"
+            android:hint="• Study 8 hours daily.&#10;• Score CGPA 4.0&#10;• Complete all assignments on time."
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:background="@drawable/pf_edit_text_bg"
+            android:textSize="14sp"
+            android:gravity="top|start"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end"
+            android:text="Save"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:background="@drawable/pf_btn_save"
+            app:backgroundTint="@null"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_tutor_list">
+
+        <TextView
+            android:id="@+id/TVDiscoveryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/discovery_find_tutor"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/ETDiscoverySearch"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_dropdown"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="10dp"
+            android:hint="@string/discovery_search_hint"
+            android:padding="12dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/TVDiscoverySubjectLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:textColor="#6A7282"
+        android:text="@string/discovery_subject" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:singleSelection="true"
+                android:id="@+id/CGDiscoverySubject">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpSubjectAll"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_all" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpMath"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_math" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpPhy"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_phy" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpChem"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_chem" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpBio"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_bio" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpAddMath"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_add_math" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpEco"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_eco" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpAcc"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_acc" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpHist"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_hist" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpMly"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_mly" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpEng"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_eng" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpCn"
+                    style="@style/ChipSubject"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_cn" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/TVRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:textColor="#6A7282"
+        android:text="@string/discovery_rating" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:singleSelection="true"
+                android:id="@+id/CGDiscoveryRating">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpRatingAll"
+                    style="@style/ChipRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_rate" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/Cp4.5"
+                    style="@style/ChipRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_4.5" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/Cp4.0"
+                    style="@style/ChipRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_4.0" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/Cp3.5"
+                    style="@style/ChipRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_3.5" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/Cp3.0"
+                    style="@style/ChipRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_3.0" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/CpBelow3.0"
+                    style="@style/ChipRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chip_below_3.0" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/TVDiscoveryTutorCount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="@string/tutor_count"
+            android:textSize="15sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/bg_dropdown"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/ic_sort"
+                android:layout_marginStart="15dp"/>
+
+            <Spinner
+                android:id="@+id/SpnDiscoverySort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:entries="@array/sort_options"
+                android:prompt="@array/sort_options"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RVDiscovery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="10dp"
+        android:paddingBottom="70dp"
+        android:layout_marginEnd="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="#533B3B"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_home"
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSearch"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_search_white"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search &amp;\nBook"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navUpcoming"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_upcoming"
+                android:text=""
+                android:textSize="24sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upcoming\nSession"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navProfile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_user"
+                android:text=""
+                android:textSize="24sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile"
+                android:textColor="#99A1AF"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
+
+
+

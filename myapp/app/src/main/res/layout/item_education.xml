@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="14dp"
+    android:layout_marginTop="10dp"
+    android:id="@+id/CVEducation">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/TVEducation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#1E2939"
+            android:text="Education" />
+
+        <TextView
+            android:id="@+id/TVInstitution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#6A7282"
+            android:text="University" />
+
+        <TextView
+            android:id="@+id/TVGraduationYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#6A7282"
+            android:text="Year" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
