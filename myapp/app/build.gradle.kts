@@ -4,12 +4,22 @@ plugins {
 
 android {
     namespace = "com.example.myapp"
+<<<<<<< HEAD
     compileSdk = 34
+=======
+    compileSdk {
+        version = release(36)
+    }
+>>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
 
     defaultConfig {
         applicationId = "com.example.myapp"
         minSdk = 24
+<<<<<<< HEAD
         targetSdk = 34
+=======
+        targetSdk = 36
+>>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
         versionCode = 1
         versionName = "1.0"
 
@@ -46,8 +56,11 @@ dependencies {
     // MPAndroidChart for pie chart
     implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
+<<<<<<< HEAD
     
     // Retrofit for networking
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+=======
+>>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
 }
