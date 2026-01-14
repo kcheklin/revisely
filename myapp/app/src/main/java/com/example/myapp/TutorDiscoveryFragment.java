@@ -22,6 +22,8 @@ public class TutorDiscoveryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstancesState){
         super.onViewCreated(view, savedInstancesState);
 
+<<<<<<< HEAD
+=======
         if(tutorList == null){
             tutorList = new ArrayList<>();
             //mock tutor list, can change later
@@ -75,6 +77,7 @@ public class TutorDiscoveryFragment extends Fragment {
                     Arrays.asList(142)));
         }
 
+>>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
         ChipGroup cpSubject = view.findViewById(R.id.CGDiscoverySubject);
         ChipGroup cpRating = view.findViewById(R.id.CGDiscoveryRating);
         RecyclerView rvDiscovery = view.findViewById(R.id.RVDiscovery);
@@ -87,9 +90,31 @@ public class TutorDiscoveryFragment extends Fragment {
         cpSubject.check(R.id.CpSubjectAll);
         cpRating.check(R.id.CpRatingAll);
 
+<<<<<<< HEAD
+        rvDiscovery.setLayoutManager(new LinearLayoutManager(getContext()));
+        
+        // Fetch tutors from API
+        com.example.myapp.api.RetrofitClient.getApiService().getTutors().enqueue(new retrofit2.Callback<List<Tutor>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<Tutor>> call, retrofit2.Response<List<Tutor>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    tutorList = response.body();
+                    TutorAdapter tutorAdapter = new TutorAdapter(getContext(), tutorList);
+                    rvDiscovery.setAdapter(tutorAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<Tutor>> call, Throwable t) {
+                // Handle error (maybe show a toast or log it)
+                t.printStackTrace();
+            }
+        });
+=======
         TutorAdapter tutorAdapter = new TutorAdapter(getContext(), tutorList);
         rvDiscovery.setLayoutManager(new LinearLayoutManager(getContext()));
         rvDiscovery.setAdapter(tutorAdapter);
+>>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
 
         navHome.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), StudentHomepageActivity.class);
