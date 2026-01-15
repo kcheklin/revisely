@@ -9,9 +9,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+
+import com.example.myapp.models.Quiz;
+import com.example.myapp.models.QuizQuestion;
+import com.example.myapp.models.QuizResultResponse;
+import com.example.myapp.models.QuizSubmitRequest;
+import com.example.myapp.repositories.QuizRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionActivity extends AppCompatActivity {
 
@@ -23,9 +33,14 @@ public class QuestionActivity extends AppCompatActivity {
     private CountDownTimer countDownTimer;
 
     private int selectedOption = -1;
-    private int currentQuestion = 1;  // Changed from 7 to 1
-    private int totalQuestions = 10;
+    private int currentQuestionIndex = 0;
     private int timeLeft = 30;
+    private long startTime;
+    
+    private QuizRepository quizRepository;
+    private Quiz currentQuiz;
+    private List<QuizQuestion> questions;
+    private List<QuizSubmitRequest.AnswerSubmission> userAnswers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +59,20 @@ public class QuestionActivity extends AppCompatActivity {
         nextButton = findViewById(R.id.nextButton);
         timerProgress = findViewById(R.id.timerProgress);
 
-        // Set question number
-        questionNumber.setText(currentQuestion + " /" + totalQuestions);
+        quizRepository = new QuizRepository(this);
+        userAnswers = new ArrayList<>();
+        startTime = System.currentTimeMillis();
 
-        // Start timer
-        startTimer();
+        // Get quiz ID from intent
+        int quizId = getIntent().getIntExtra("quizId", -1);
+        if (quizId == -1) {
+            Toast.makeText(this, "Invalid quiz", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
+
+        // Load quiz from backend
+        loadQuiz(quizId);
 
         // Setup option click listeners
         setupOptionListeners();
@@ -66,16 +90,152 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (selectedOption != -1) {
-                    // User has selected an option, proceed to next
-                    Intent intent = new Intent(QuestionActivity.this, QuizResultActivity.class);
-                    startActivity(intent);
-                    finish();
+                    saveAnswer();
+                    proceedToNextQuestion();
                 } else {
-                    // Optional: Show a message that user must select an option
-                    // Toast.makeText(QuestionActivity.this, "Please select an option", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuestionActivity.this, 
+                        "Please select an option", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void loadQuiz(int quizId) {
+        quizRepository.getQuiz(quizId, new QuizRepository.QuizCallback() {
+            @Override
+            public void onSuccess(Quiz quiz) {
+                currentQuiz = quiz;
+                questions = quiz.getQuizQuestions();
+                
+                if (questions != null && !questions.isEmpty()) {
+                    // Set timer based on quiz time limit
+                    timeLeft = quiz.getTimeLimit() != null ? quiz.getTimeLimit() * 60 : 1800;
+                    displayQuestion(0);
+                    startTimer();
+                } else {
+                    Toast.makeText(QuestionActivity.this, 
+                        "No questions available", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+
+            @Override
+            public void onError(String message) {
+                Toast.makeText(QuestionActivity.this, 
+                    "Error loading quiz: " + message, Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+    }
+
+    private void displayQuestion(int index) {
+        if (questions == null || index >= questions.size()) {
+            return;
+        }
+
+        currentQuestionIndex = index;
+        QuizQuestion question = questions.get(index);
+        
+        // Update question number
+        questionNumber.setText((index + 1) + " /" + questions.size());
+        
+        // Update question text
+        questionText.setText(question.getQuestionText());
+        
+        // Update options
+        List<String> options = question.getOptions();
+        if (options != null && options.size() >= 4) {
+            option1.setText(options.get(0));
+            option2.setText(options.get(1));
+            option3.setText(options.get(2));
+            option4.setText(options.get(3));
+            
+            // Show all options
+            option1.setVisibility(View.VISIBLE);
+            option2.setVisibility(View.VISIBLE);
+            option3.setVisibility(View.VISIBLE);
+            option4.setVisibility(View.VISIBLE);
+        } else if (options != null && options.size() == 2) {
+            // True/False question
+            option1.setText(options.get(0));
+            option2.setText(options.get(1));
+            option3.setVisibility(View.GONE);
+            option4.setVisibility(View.GONE);
+        }
+        
+        // Reset selection
+        selectedOption = -1;
+        resetOptions();
+        
+        // Update next button text
+        if (index == questions.size() - 1) {
+            nextButton.setText("Submit");
+        } else {
+            nextButton.setText("Next");
+        }
+    }
+
+    private void saveAnswer() {
+        if (questions == null || currentQuestionIndex >= questions.size()) {
+            return;
+        }
+
+        QuizQuestion question = questions.get(currentQuestionIndex);
+        String answer = String.valueOf(selectedOption - 1);  // Convert to 0-indexed
+        
+        // For true/false questions, convert to string
+        if (question.getQuestionType().equals("true-false")) {
+            List<String> options = question.getOptions();
+            if (options != null && selectedOption - 1 < options.size()) {
+                answer = options.get(selectedOption - 1).toLowerCase();
+            }
+        }
+        
+        userAnswers.add(new QuizSubmitRequest.AnswerSubmission(question.getId(), answer));
+    }
+
+    private void proceedToNextQuestion() {
+        if (currentQuestionIndex < questions.size() - 1) {
+            // Move to next question
+            displayQuestion(currentQuestionIndex + 1);
+        } else {
+            // Submit quiz
+            submitQuiz();
+        }
+    }
+
+    private void submitQuiz() {
+        // Cancel timer
+        if (countDownTimer != null) {
+            countDownTimer.cancel();
+        }
+
+        // Calculate time taken in seconds
+        int timeTaken = (int) ((System.currentTimeMillis() - startTime) / 1000);
+        
+        QuizSubmitRequest request = new QuizSubmitRequest(userAnswers, timeTaken);
+        
+        quizRepository.submitQuiz(currentQuiz.getId(), request, 
+            new QuizRepository.QuizResultCallback() {
+                @Override
+                public void onSuccess(QuizResultResponse.Result result) {
+                    // Navigate to results
+                    Intent intent = new Intent(QuestionActivity.this, QuizResultActivity.class);
+                    intent.putExtra("score", result.getScore());
+                    intent.putExtra("totalQuestions", result.getTotalQuestions());
+                    intent.putExtra("correctAnswers", result.getCorrectAnswers());
+                    intent.putExtra("passed", result.isPassed());
+                    intent.putExtra("timeTaken", result.getTimeTaken());
+                    startActivity(intent);
+                    finish();
+                }
+
+                @Override
+                public void onError(String message) {
+                    Toast.makeText(QuestionActivity.this, 
+                        "Error submitting quiz: " + message, Toast.LENGTH_LONG).show();
+                }
+            });
     }
 
     private void setupOptionListeners() {

@@ -24,6 +24,7 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.ViewHolder> 
         this.tutorList = tutorList;
     }
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         CardView cvTutor;
         ImageView ivAvatar;
@@ -55,7 +56,10 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position){
         Tutor tutor = tutorList.get(position);
 
-        holder.ivAvatar.setImageResource(tutor.getAvatarId());
+        // Map backend avatar ID to drawable resource
+        int drawableResourceId = AvatarMapper.getTutorAvatarResource(tutor.getAvatarId());
+        holder.ivAvatar.setImageResource(drawableResourceId);
+        
         holder.tvTutorName.setText(tutor.getName());
         holder.tvTutorFaculty.setText("Faculty of " + tutor.getFaculty());
         holder.tvTutorRating.setText(String.format("%.1f", tutor.getAverageRating()));
@@ -69,7 +73,6 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.ViewHolder> 
 
         //dynamic subject chips for each tutor
         holder.llSubject.removeAllViews();
-<<<<<<< HEAD
         if (tutor.getSubjects() != null) {
             for (String subject : tutor.getSubjects()) {
                 TextView tv = new TextView(context);
@@ -90,26 +93,6 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.ViewHolder> 
 
                 holder.llSubject.addView(tv);
             }
-=======
-        for (String subject : tutor.getSubjects()) {
-            TextView tv = new TextView(context);
-
-            tv.setText(subject);
-            tv.setTextColor(Color.parseColor("#4A5565"));
-            tv.setPadding(40, 8, 40, 8);
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13);
-
-            GradientDrawable shape = new GradientDrawable();
-            shape.setCornerRadius(25f);
-            shape.setColor(Color.parseColor("#FFFFFF"));
-            shape.setStroke(2, Color.parseColor("#E5E7EB"));
-            tv.setBackground(shape);
-
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            tv.setLayoutParams(params);
-
-            holder.llSubject.addView(tv);
->>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
         }
 
         holder.btnViewProfile.setOnClickListener(v -> {
@@ -131,4 +114,3 @@ public class TutorAdapter extends RecyclerView.Adapter<TutorAdapter.ViewHolder> 
         return tutorList.size();
     }
 }
-

@@ -9,15 +9,30 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import com.example.myapp.api.ApiService;
+import com.example.myapp.api.RetrofitClient;
+import com.example.myapp.models.AnalyticsData;
+import com.example.myapp.models.AnalyticsSummary;
+import com.example.myapp.models.AnalyticsSummaryResponse;
+import com.example.myapp.models.DailyAnalyticsResponse;
+import com.example.myapp.models.PeriodAnalyticsResponse;
+import com.example.myapp.models.ProfileResponse;
+import com.example.myapp.models.QuoteResponse;
+import com.example.myapp.utils.SessionManager;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -41,17 +56,24 @@ public class ProfileActivity extends AppCompatActivity {
     };
 
     private String currentView = "daily";
+    private SessionManager sessionManager;
+    private AnalyticsSummary cachedSummary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        sessionManager = new SessionManager(this);
+
         initializeViews();
         setupClickListeners();
         setupBottomNavigation();
         setRandomMotivation();
-        updateAnalytics("daily");
+        
+        // Load actual user data from backend
+        loadUserProfile();
+        loadAnalyticsSummary();
 
         // Set Profile as selected by default
         selectNavItem(btnNavProfile);
@@ -116,10 +138,15 @@ public class ProfileActivity extends AppCompatActivity {
         if (btnLogout != null) {
             btnLogout.setOnClickListener(v -> {
                 // Clear user session data
+                sessionManager.logout();
+                
                 SharedPreferences prefs = getSharedPreferences("UserProfile", MODE_PRIVATE);
                 SharedPreferences.Editor editor = prefs.edit();
                 editor.clear();
                 editor.apply();
+
+                // Reset authenticated client
+                RetrofitClient.resetAuthenticatedClient();
 
                 // Navigate to Login screen
                 Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
@@ -193,31 +220,156 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void loadProfileData() {
+        // Get user data from SessionManager
+        String name = sessionManager.getUserName();
+        String email = sessionManager.getUserEmail();
+        String role = sessionManager.getUserRole();
+
+        if (tvName != null) {
+            tvName.setText(name != null ? name : "User");
+        }
+        
+        if (tvField != null) {
+            // Display role with email
+            String roleDisplay = role != null ? role.substring(0, 1).toUpperCase() + role.substring(1) : "Student";
+            tvField.setText(roleDisplay + " • " + (email != null ? email : ""));
+        }
+
+        // Try to load additional profile data from SharedPreferences (in case it's cached)
         SharedPreferences prefs = getSharedPreferences("UserProfile", MODE_PRIVATE);
+        String bio = prefs.getString("bio", "Welcome to your profile!");
+        String goals = prefs.getString("goals", "• Set your study goals\n• Track your progress\n• Achieve success!");
 
-        String name = prefs.getString("name", "Jaelyn");
-        String field = prefs.getString("field", "Computer Science (AI)");
-        String bio = prefs.getString("bio", "Coffee☕ and a good study playlist 🎵keep me going.");
-        String goals = prefs.getString("goals", "• Study 8 hours daily.\n• Score CGPA 4.0\n• Complete all assignments on time.");
-
-        if (tvName != null) tvName.setText(name);
-        if (tvField != null) tvField.setText(field);
         if (tvBio != null) tvBio.setText(bio);
         if (tvGoals != null) tvGoals.setText(goals);
+    }
 
-        if (tvTotalHabits != null) tvTotalHabits.setText("100");
-        if (tvStreak != null) tvStreak.setText("50+");
-        if (tvStudyDays != null) tvStudyDays.setText("30 days");
+    private void loadUserProfile() {
+        ApiService apiService = RetrofitClient.getAuthenticatedApiService(this);
+        Call<ProfileResponse> call = apiService.getMyProfile();
+
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    ProfileResponse profileResponse = response.body();
+                    
+                    if (profileResponse.getProfile() != null) {
+                        // Update UI with profile data
+                        if (profileResponse.getProfile().getBio() != null && tvBio != null) {
+                            tvBio.setText(profileResponse.getProfile().getBio());
+                            
+                            // Cache bio in SharedPreferences
+                            SharedPreferences prefs = getSharedPreferences("UserProfile", MODE_PRIVATE);
+                            prefs.edit().putString("bio", profileResponse.getProfile().getBio()).apply();
+                        }
+
+                        // If profile has associated User data, update that too
+                        if (profileResponse.getProfile().getUser() != null) {
+                            String userName = profileResponse.getProfile().getUser().getName();
+                            String userEmail = profileResponse.getProfile().getUser().getEmail();
+                            String userRole = profileResponse.getProfile().getUser().getRole();
+                            
+                            if (tvName != null && userName != null) {
+                                tvName.setText(userName);
+                            }
+                            
+                            if (tvField != null && userRole != null) {
+                                String roleDisplay = userRole.substring(0, 1).toUpperCase() + userRole.substring(1);
+                                tvField.setText(roleDisplay + " • " + userEmail);
+                            }
+                        }
+                    }
+                } else {
+                    // Fallback to SessionManager data
+                    loadProfileData();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                // Fallback to SessionManager data
+                loadProfileData();
+            }
+        });
+    }
+
+    private void loadAnalyticsSummary() {
+        ApiService apiService = RetrofitClient.getAuthenticatedApiService(this);
+        Call<AnalyticsSummaryResponse> call = apiService.getAnalyticsSummary();
+
+        call.enqueue(new Callback<AnalyticsSummaryResponse>() {
+            @Override
+            public void onResponse(Call<AnalyticsSummaryResponse> call, Response<AnalyticsSummaryResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    cachedSummary = response.body().getSummary();
+                    
+                    // Update stats
+                    if (tvTotalHabits != null && cachedSummary != null) {
+                        tvTotalHabits.setText(String.valueOf(cachedSummary.getTotalSessions()));
+                    }
+                    
+                    if (tvStreak != null && cachedSummary != null) {
+                        tvStreak.setText(cachedSummary.getRecentSessions() + "+");
+                    }
+                    
+                    if (tvStudyDays != null && cachedSummary != null) {
+                        int days = cachedSummary.getTotalSessions(); // Approximation
+                        tvStudyDays.setText(days + " sessions");
+                    }
+
+                    // Load the current period analytics
+                    updateAnalytics(currentView);
+                } else {
+                    // Use default data
+                    updateAnalytics(currentView);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AnalyticsSummaryResponse> call, Throwable t) {
+                // Use default data
+                updateAnalytics(currentView);
+            }
+        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        loadProfileData();
+        loadUserProfile();
+        loadAnalyticsSummary();
         selectNavItem(btnNavProfile);
     }
 
     private void setRandomMotivation() {
+        if (tvMotivation == null) return;
+
+        // Try to fetch from backend first
+        ApiService apiService = RetrofitClient.getAuthenticatedApiService(this);
+        Call<QuoteResponse> call = apiService.getRandomQuote(null); // null = any category
+
+        call.enqueue(new Callback<QuoteResponse>() {
+            @Override
+            public void onResponse(Call<QuoteResponse> call, Response<QuoteResponse> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().getQuote() != null) {
+                    String quote = response.body().getQuote().getFormattedQuote();
+                    tvMotivation.setText(quote);
+                } else {
+                    // Fallback to local quotes
+                    setLocalMotivation();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QuoteResponse> call, Throwable t) {
+                // Fallback to local quotes
+                setLocalMotivation();
+            }
+        });
+    }
+
+    private void setLocalMotivation() {
         if (tvMotivation != null) {
             Random random = new Random();
             String quote = motivationalQuotes[random.nextInt(motivationalQuotes.length)];
@@ -240,27 +392,108 @@ public class ProfileActivity extends AppCompatActivity {
             btnMonthly.setBackgroundResource(period.equals("monthly") ? R.drawable.pf_btn_active : R.drawable.pf_btn_inactive);
         }
 
+        // Fetch analytics data from backend
+        ApiService apiService = RetrofitClient.getAuthenticatedApiService(this);
+        
+        if (period.equals("daily")) {
+            Call<DailyAnalyticsResponse> call = apiService.getDailyAnalytics(null); // null = today
+            call.enqueue(new Callback<DailyAnalyticsResponse>() {
+                @Override
+                public void onResponse(Call<DailyAnalyticsResponse> call, Response<DailyAnalyticsResponse> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        displayAnalytics(response.body().getData());
+                    } else {
+                        displayDefaultAnalytics(period);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DailyAnalyticsResponse> call, Throwable t) {
+                    displayDefaultAnalytics(period);
+                }
+            });
+        } else if (period.equals("weekly")) {
+            Call<PeriodAnalyticsResponse> call = apiService.getWeeklyAnalytics();
+            call.enqueue(new Callback<PeriodAnalyticsResponse>() {
+                @Override
+                public void onResponse(Call<PeriodAnalyticsResponse> call, Response<PeriodAnalyticsResponse> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        displayAnalytics(response.body().getData());
+                    } else {
+                        displayDefaultAnalytics(period);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PeriodAnalyticsResponse> call, Throwable t) {
+                    displayDefaultAnalytics(period);
+                }
+            });
+        } else { // monthly
+            Call<PeriodAnalyticsResponse> call = apiService.getMonthlyAnalytics();
+            call.enqueue(new Callback<PeriodAnalyticsResponse>() {
+                @Override
+                public void onResponse(Call<PeriodAnalyticsResponse> call, Response<PeriodAnalyticsResponse> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        displayAnalytics(response.body().getData());
+                    } else {
+                        displayDefaultAnalytics(period);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PeriodAnalyticsResponse> call, Throwable t) {
+                    displayDefaultAnalytics(period);
+                }
+            });
+        }
+    }
+
+    private void displayAnalytics(List<AnalyticsData> dataList) {
+        if (dataList == null || dataList.isEmpty()) {
+            // Show message if no data
+            if (tvTotalHours != null) {
+                tvTotalHours.setText("0 h");
+            }
+            ArrayList<PieEntry> entries = new ArrayList<>();
+            entries.add(new PieEntry(1, "No data yet"));
+            setupPieChart(entries);
+            return;
+        }
+
+        // Calculate total hours
+        double totalHours = 0;
+        for (AnalyticsData data : dataList) {
+            totalHours += data.getHours();
+        }
+
+        if (tvTotalHours != null) {
+            tvTotalHours.setText(String.format("%.1f h", totalHours));
+        }
+
+        // Create pie chart entries
+        ArrayList<PieEntry> entries = new ArrayList<>();
+        for (AnalyticsData data : dataList) {
+            entries.add(new PieEntry((float) data.getHours(), data.getSubject()));
+        }
+
+        setupPieChart(entries);
+    }
+
+    private void displayDefaultAnalytics(String period) {
+        // Fallback to default/sample data
         float totalHours = 0;
         ArrayList<PieEntry> entries = new ArrayList<>();
 
         if (period.equals("daily")) {
-            totalHours = 8.0f;
-            entries.add(new PieEntry(1.5f, "Biology"));
-            entries.add(new PieEntry(1.8f, "Chemistry"));
-            entries.add(new PieEntry(1.2f, "Mathematics"));
-            entries.add(new PieEntry(3.5f, "English"));
+            totalHours = 0.0f;
+            entries.add(new PieEntry(1, "Start studying!"));
         } else if (period.equals("weekly")) {
-            totalHours = 44.8f;
-            entries.add(new PieEntry(12.5f, "Biology"));
-            entries.add(new PieEntry(9.3f, "Chemistry"));
-            entries.add(new PieEntry(7.8f, "Mathematics"));
-            entries.add(new PieEntry(15.2f, "English"));
+            totalHours = 0.0f;
+            entries.add(new PieEntry(1, "No sessions yet"));
         } else {
-            totalHours = 186.0f;
-            entries.add(new PieEntry(52.3f, "Biology"));
-            entries.add(new PieEntry(38.7f, "Chemistry"));
-            entries.add(new PieEntry(37.2f, "Mathematics"));
-            entries.add(new PieEntry(60.8f, "English"));
+            totalHours = 0.0f;
+            entries.add(new PieEntry(1, "Track your study time"));
         }
 
         if (tvTotalHours != null) {

@@ -70,7 +70,9 @@ public class BookingFragment extends Fragment {
             double selectedDuration = Double.parseDouble(spnDuration.getSelectedItem().toString());
             String notes = etNotes.getText().toString();
 
-            BookingConfirmationDialog dialog = new BookingConfirmationDialog(tutor.getName(), selectedDate, selectedTime, selectedSubject, selectedDuration, notes);
+            // Convert tutorId String to int
+            int tutorIdInt = Integer.parseInt(tutorId);
+            BookingConfirmationDialog dialog = new BookingConfirmationDialog(tutorIdInt, tutor.getName(), selectedDate, selectedTime, selectedSubject, selectedDuration, notes);
             dialog.show(getParentFragmentManager(), "BookingConfirmation");
         });
 

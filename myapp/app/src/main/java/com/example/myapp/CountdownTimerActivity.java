@@ -18,6 +18,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
     private long totalTimeInMillis;
     private long timeLeftInMillis;
     private String subject;
+    private long startTimeMillis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class CountdownTimerActivity extends AppCompatActivity {
         // Calculate total time in milliseconds
         totalTimeInMillis = (hours * 3600 + minutes * 60 + seconds) * 1000L;
         timeLeftInMillis = totalTimeInMillis;
+        
+        // Record the start time
+        startTimeMillis = System.currentTimeMillis();
 
         startTimer();
 
@@ -59,6 +63,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
                 Intent intent = new Intent(CountdownTimerActivity.this, TimerSessionSummaryActivity.class);
                 intent.putExtra("subject", subject);
                 intent.putExtra("focusedTime", focusedTime);
+                intent.putExtra("startTime", startTimeMillis);
                 startActivity(intent);
                 finish();
             }
@@ -122,6 +127,7 @@ public class CountdownTimerActivity extends AppCompatActivity {
                 Intent intent = new Intent(CountdownTimerActivity.this, TimerSessionSummaryActivity.class);
                 intent.putExtra("subject", subject);
                 intent.putExtra("focusedTime", totalTimeInMillis);
+                intent.putExtra("startTime", startTimeMillis);
                 startActivity(intent);
                 finish();
             }

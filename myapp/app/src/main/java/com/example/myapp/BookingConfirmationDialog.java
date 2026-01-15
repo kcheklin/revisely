@@ -12,6 +12,7 @@ import java.util.*;
 
 public class BookingConfirmationDialog extends DialogFragment {
 
+    private int tutorId;
     private String tutorName;
     private String date;
     private String startTime;
@@ -19,7 +20,8 @@ public class BookingConfirmationDialog extends DialogFragment {
     private String subject;
     private String notes;
 
-    public BookingConfirmationDialog(String tutorName, String date, String startTime, String subject, double duration, String notes) {
+    public BookingConfirmationDialog(int tutorId, String tutorName, String date, String startTime, String subject, double duration, String notes) {
+        this.tutorId = tutorId;
         this.tutorName = tutorName;
         this.date = date;
         this.startTime = startTime;
@@ -41,6 +43,9 @@ public class BookingConfirmationDialog extends DialogFragment {
         String formattedTime = formatTime(startTime, duration);
         tvConfirm1.setText("Your request to book a session with tutor " + tutorName + " has been sent");
         tvConfirm2.setText("Subject: " + subject + "\nDate: " + formattedDate + "\nTime: " + formattedTime + "\nAdditional Notes: " + ((notes == null || notes.trim().isEmpty()) ? "-" : notes));
+
+        // Create the booking via API
+        createBooking();
 
         btnBackHome.setOnClickListener(v ->{
             Intent intent = new Intent(getActivity(), StudentHomepageActivity.class);
@@ -89,6 +94,57 @@ public class BookingConfirmationDialog extends DialogFragment {
             e.printStackTrace();
             return startTime + " - ?";
         }
+    }
+
+    private void createBooking() {
+        // Get user ID from session manager if available
+        com.example.myapp.utils.SessionManager sessionManager = new com.example.myapp.utils.SessionManager(requireContext());
+        Integer userId = null;
+        String studentName = null;
+
+        // Try to get user ID from session
+        if (sessionManager.getToken() != null) {
+            userId = sessionManager.getUserId();
+            studentName = sessionManager.getUserName();
+        }
+
+        // Format time to HH:mm:ss format expected by backend
+        String formattedTime = startTime + ":00";
+
+        // Create booking request
+        com.example.myapp.models.BookingRequest bookingRequest = 
+            new com.example.myapp.models.BookingRequest(tutorId, userId, studentName, subject, date, formattedTime);
+        bookingRequest.setNotes(notes);
+
+        // Call the API
+        com.example.myapp.api.RetrofitClient.getApiService().createBooking(bookingRequest)
+            .enqueue(new retrofit2.Callback<com.example.myapp.models.BookingResponse>() {
+                @Override
+                public void onResponse(retrofit2.Call<com.example.myapp.models.BookingResponse> call, 
+                                     retrofit2.Response<com.example.myapp.models.BookingResponse> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        com.example.myapp.models.BookingResponse bookingResponse = response.body();
+                        if (!bookingResponse.hasError()) {
+                            // Booking successful
+                            android.util.Log.d("BookingConfirmation", "Booking created successfully with ID: " + bookingResponse.getId());
+                        } else {
+                            // Handle error from backend
+                            android.util.Log.e("BookingConfirmation", "Error creating booking: " + bookingResponse.getError());
+                            Toast.makeText(getContext(), "Booking error: " + bookingResponse.getError(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        android.util.Log.e("BookingConfirmation", "Failed to create booking: " + response.code());
+                        // Still show confirmation dialog even if API fails
+                    }
+                }
+
+                @Override
+                public void onFailure(retrofit2.Call<com.example.myapp.models.BookingResponse> call, Throwable t) {
+                    android.util.Log.e("BookingConfirmation", "API call failed: " + t.getMessage());
+                    t.printStackTrace();
+                    // Still show confirmation dialog even if API fails
+                }
+            });
     }
 
 }

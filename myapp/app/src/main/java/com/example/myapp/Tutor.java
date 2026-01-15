@@ -4,10 +4,7 @@ import java.util.List;
 
 public class Tutor {
 
-<<<<<<< HEAD
     @com.google.gson.annotations.SerializedName("id")
-=======
->>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
     private String tutorId;
     private String name;
     private String faculty;
@@ -32,11 +29,8 @@ public class Tutor {
     private List<Integer> reviewStar;
     private List<Integer> reviewLikes;
 
-<<<<<<< HEAD
     public Tutor() {}
 
-=======
->>>>>>> bd114bac6a70ab1f02e6755026cdb2a87cfd4084
     public Tutor(String tutorId, String name, String faculty, List<String> subjects, int avatarId, String role, String about, int noStudents, int noSessions, int yearsExperience, List<Integer> starRatings, List<String> subjectMinLevel, List<String> subjectMaxLevel, List<String> education, List<String> institutions, List<Integer> graduationYears, List<String> timeSlots, List<Boolean> timeSlotsAvailability, List<String> reviewName, List<Integer> reviewAvatarId, List<String> reviewContent, List<Integer> reviewStar, List<Integer> reviewLikes) {
         this.tutorId = tutorId;
         this.name = name;

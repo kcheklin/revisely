@@ -42,7 +42,9 @@ public class TutorProfileFragment extends Fragment {
         ProgressBar[] pbStars = {view.findViewById(R.id.PB5Star), view.findViewById(R.id.PB4Star), view.findViewById(R.id.PB3Star), view.findViewById(R.id.PB2Star), view.findViewById(R.id.PB1Star)};
         TextView[] tvStarsCount = {view.findViewById(R.id.TV5Star), view.findViewById(R.id.TV4Star), view.findViewById(R.id.TV3Star), view.findViewById(R.id.TV2Star), view.findViewById(R.id.TV1Star)};
 
-        ivAvatar.setImageResource(tutor.getAvatarId());
+        // Map backend avatar ID to drawable resource
+        int drawableResourceId = AvatarMapper.getTutorAvatarResource(tutor.getAvatarId());
+        ivAvatar.setImageResource(drawableResourceId);
         tvName.setText(tutor.getName());
         tvRole.setText(tutor.getRole());
         tvAbout.setText(tutor.getAbout());

@@ -18,7 +18,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
+import com.example.myapp.api.ApiService;
+import com.example.myapp.api.RetrofitClient;
+import com.example.myapp.models.Profile;
+import com.example.myapp.models.ProfileResponse;
+
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -265,6 +274,7 @@ public class EditProfileActivity extends AppCompatActivity {
             return;
         }
 
+        // Save to SharedPreferences as cache
         SharedPreferences prefs = getSharedPreferences("UserProfile", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
 
@@ -276,7 +286,35 @@ public class EditProfileActivity extends AppCompatActivity {
 
         editor.apply();
 
-        Toast.makeText(this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
-        finish();
+        // Also save to backend
+        Profile profile = new Profile();
+        profile.setBio(bio);
+        // Note: name and field are User properties, not Profile properties
+        // Only bio, profilePicture, avatarId, theme, and notifications can be updated via profile endpoint
+        
+        ProfileResponse request = new ProfileResponse();
+        request.setProfile(profile);
+        
+        ApiService apiService = RetrofitClient.getAuthenticatedApiService(this);
+        Call<ProfileResponse> call = apiService.updateProfile(request);
+        
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Toast.makeText(EditProfileActivity.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(EditProfileActivity.this, "Failed to update profile on server, but saved locally", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Toast.makeText(EditProfileActivity.this, "Network error, but saved locally: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 }

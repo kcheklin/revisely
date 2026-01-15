@@ -18,6 +18,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         this.reviewList = reviewList;
     }
 
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         CardView cvReview;
@@ -46,7 +47,10 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position){
         Review review = reviewList.get(position);
 
-        holder.ivAvatar.setImageResource(review.getAvatarId());
+        // Map backend avatar ID to drawable resource
+        int drawableResourceId = AvatarMapper.getStudentAvatarResource(review.getAvatarId());
+        holder.ivAvatar.setImageResource(drawableResourceId);
+        
         holder.tvName.setText(review.getName());
         holder.tvRating.setText(review.getContent());
         holder.tvLikes.setText("Helpful (" + review.getLikes() + ")");
