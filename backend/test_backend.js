@@ -12,10 +12,11 @@ async function testSystem() {
         console.log('\n--- 2. Testing Create Booking ---');
         const bookingData = {
             tutorId: tutorId,
+            userId: 1, // Using seeded user ID
             studentName: "Test Student",
             subject: "Mathematics",
             date: "2025-12-05",
-            time: "10:00",
+            time: "10:00:00", // PostgreSQL TIME format
             status: "Upcoming"
         };
         const booking = await axios.post(`${BASE_URL}/bookings`, bookingData);
@@ -34,7 +35,7 @@ async function testSystem() {
         }
 
         console.log('\n--- 4. Testing Get Upcoming Sessions ---');
-        const sessions = await axios.get(`${BASE_URL}/sessions/upcoming`);
+        const sessions = await axios.get(`${BASE_URL}/sessions/upcoming?userId=1`);
         const mySession = sessions.data.find(s => s.id === booking.data.id);
         if (mySession) {
             console.log('✅ Success: Found the new booking in upcoming sessions.');

@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '.env.local' });
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -21,11 +21,19 @@ app.use('/auth', authLimiter, authRoutes);
 
 // API Routes
 const routes = {
+  // Tutor Booking System
   tutors: require('./routes/tutors'),
   bookings: require('./routes/bookings'),
   sessions: require('./routes/sessions'),
   reviews: require('./routes/reviews'),
-  messages: require('./routes/messages')
+  messages: require('./routes/messages'),
+  
+  // Module 5: Profile & Analytics
+  profiles: require('./routes/profiles'),
+  
+  // Module 6: Textbook Quizzes
+  textbooks: require('./routes/textbooks'),
+  quizzes: require('./routes/quizzes')
 };
 
 Object.entries(routes).forEach(([name, router]) => {
