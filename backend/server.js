@@ -58,8 +58,10 @@ app.get('/', (req, res) => {
 sequelize.sync()
   .then(() => {
     console.log('Database synced');
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}`);
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server is running on http://0.0.0.0:${PORT}`);
+      console.log(`Local Access: http://localhost:${PORT}`);
+      console.log(`Network Access: http://10.131.156.144:${PORT}`); 
     });
   })
   .catch(err => {
